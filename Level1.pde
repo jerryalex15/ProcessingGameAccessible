@@ -1,18 +1,42 @@
 class Level1 extends Level{
   
+  String vrai = "false";
+  String instruction ;
+  
   Level1(String textMap) {
     super(textMap);
   }
   
   void update() {
-    
+  }
+  
+  boolean displayed = false;
+  void affiche(float variable) {
+    if (!displayed) {
+      println(variable);
+      this.displayed = true;
+    }  
   }
   
   void display() {
     background(0);
+    ///////////////
     
+    fill(255);
+    rect(0,0,width,height);
+    
+    textSize(32);
+    fill(0, 0, 0);
+    text("Pour valider, Tester l'instruction suivant: ", 1200, 50, (width -50), (height -50)); 
+    instruction = "\n\nboolean move = false;\nif (keycode == DOWN) {\n    move = true; \n    println(\"Move = \"+ move );\n}\n\nAffichage console \nMove = "+ vrai;
+    text(instruction, 1200, 75, (width -50), (height -50));
+    if(player.isMoved == true) {
+      vrai = "true";
+    }
+    
+    ///////////////
     // Dessiner le terrain
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0 ; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         if (grid[j][i] == '1') {
           stroke(0);
@@ -37,7 +61,7 @@ class Level1 extends Level{
           // Vérifier si un ennemi est dans le rayon de lumière
           //A vérifier pour que si un ennemi est éclairé => déplacement 
           for (Enemy enemy : enemies) {
-            if (dist(i, j, enemy.x, enemy.y) <= lightRadius -4) {
+            if (dist(i, j, enemy.x, enemy.y) <= lightRadius - 5) {
               enemy.follow(player);
             }
           }

@@ -1,20 +1,10 @@
-int rows = 0;
-int cols = 0;
-int[][] grid;
-
-int lightRadius;  //ajouter aussi le son en fonction de lightRadius
-float sz = 20;  // Taille du personnage
-
-ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-
 Level level;
-int currentgame = 0;
+int currentgame = 0; //for now, we change manually
 Player player;
 
 String[] textMaps = {"ground.txt","ground2.txt"};
 
 void setup() {
-  size(840, 760);
   switch (currentgame) {
     case 0:
       this.level = new Level1(textMaps[currentgame]);

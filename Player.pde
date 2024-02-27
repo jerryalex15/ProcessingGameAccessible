@@ -5,6 +5,7 @@ class Player {
   float sz;
   int lightRadius;
   int[][] grid;
+  boolean isMoved;
 
   Player(float size, int lightR, int[][] griD, int col, int row) {
     this.grid = new int[col][row];
@@ -19,18 +20,22 @@ class Player {
     this.y = 1;
     this.sz = size;
     this.lightRadius = lightR;
+    this.isMoved = false;
   }
 
   void move(int direction) {
-
     if (direction == UP && y > 0 && this.grid[x][y - 1] != '1') { 
       y--;
+      this.isMoved = true;
     } else if (direction == DOWN && y < this.rows - 1 && this.grid[x][y + 1] != '1') {
       y++;
+      this.isMoved = true;
     } else if (direction == LEFT && x > 0 && this.grid[x - 1][y] != '1') {
       x--;
+      this.isMoved = true;
     } else if (direction == RIGHT && x < this.cols - 1 && this.grid[x + 1][y] != '1') {
       x++;
+      this.isMoved = true;
     }
   }
 

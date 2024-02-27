@@ -4,7 +4,7 @@ class Level {
   int[][] grid;
   
   int lightRadius;  //ajouter aussi le son en fonction de lightRadius
-  float sz = 20;  // Taille du personnage
+  float sz = 25;  // Taille du personnage
   
   ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   String textMap;
@@ -16,7 +16,7 @@ class Level {
   }
   
   void setup() {
-    //size(840, 760);
+    size(1920, 1080);
     String[] loadedText = loadStrings(textMap);
     this.cols = loadedText[1].length();
     this.rows = loadedText.length;
@@ -45,6 +45,9 @@ class Level {
   }
   
   void display(){
+  }
+  
+  void move_down(int direction){
   }
   
   void keyPressed() {
