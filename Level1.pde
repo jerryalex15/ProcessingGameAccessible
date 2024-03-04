@@ -1,10 +1,21 @@
 class Level1 extends Level{
   
-  String vrai = "false";
-  String instruction ;
+  String vrai;
+  String instruction;
+  String consoleResult;
+  float widthText;
+  float heighText;
+  float xText;
+  float yText;
+  float positionX;
   
   Level1(String textMap) {
     super(textMap);
+    widthText = width - 50;
+    heighText = height - 50;
+    xText = 1200; 
+    yText = 75;
+    positionX = xText + 50;
   }
   
   void update() {
@@ -27,11 +38,16 @@ class Level1 extends Level{
     
     textSize(32);
     fill(0, 0, 0);
-    text("Pour valider, Tester l'instruction suivant: ", 1200, 50, (width -50), (height -50)); 
-    instruction = "\n\nboolean move = false;\nif (keycode == DOWN) {\n    move = true; \n    println(\"Move = \"+ move );\n}\n\nAffichage console \nMove = "+ vrai;
-    text(instruction, 1200, 75, (width -50), (height -50));
+    text("Pour valider, Tester l'instruction suivant: ", 1200, 50, widthText, heighText); 
+    instruction = "\n\nboolean move = false;\nif (keycode == DOWN) {\n    move = true; \n    println(\"Move = \"+ move );\n}\n";
+    consoleResult = "\nAffichage sur la console: \nMove = "+ vrai;
+    text(instruction, xText, yText, widthText, heighText);
     if(player.isMoved == true) {
       vrai = "true";
+      text(consoleResult, positionX , yText + (75 * 4), widthText, heighText);
+      if (positionX > xText) {
+        positionX = positionX - 1;
+      }
     }
     
     ///////////////

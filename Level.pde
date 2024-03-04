@@ -47,9 +47,6 @@ class Level {
   void display(){
   }
   
-  void move_down(int direction){
-  }
-  
   void keyPressed() {
     //Déplacement du personnage avec les touches fléchées
     this.player.move(keyCode);
