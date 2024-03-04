@@ -1,12 +1,13 @@
 class Level {
-  int rows = 0;
-  int cols = 0;
+  int rows;
+  int cols;
   int[][] grid;
   
   int lightRadius;  //ajouter aussi le son en fonction de lightRadius
   float sz = 25;  // Taille du personnage
   
   ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+  
   String textMap;
   
   Player player;
@@ -35,11 +36,6 @@ class Level {
     }
     
     player = new Player(sz, lightRadius, grid, cols, rows);
-    // Générer quelques ennemis
-    for (int i = 1; i < 2; i++) {
-      enemies.add(new Enemy(grid,cols, rows, 3, 20, sz));
-      enemies.add(new Enemy(grid,cols, rows, 20, 20, sz));
-    }
   }
   
   void update(){

@@ -13,6 +13,7 @@ class Enemy {
     this.row = row;
     grid = new int[col][row];
     arrayCopy(gridE, grid);
+    //grid = gridE;
     x = posX;
     y = posY;
     sz = size;
@@ -21,8 +22,9 @@ class Enemy {
     lastMoveFrame = frameCount;
   }
   
-  void moveRandomly(){
-    
+  public void changePosition(int a, int b){
+    this.x = a;
+    this.y = b;
   }
 
   void follow(Player p) {

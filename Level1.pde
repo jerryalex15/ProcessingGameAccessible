@@ -20,6 +20,14 @@ class Level1 extends Level{
     
   }
   
+  void setup(){
+    super.setup();
+    print("Setup dans Lev1");
+    //   !!!Générer quelques ennemis mais if faut placer independament selon le niveau
+    enemies.add(new Enemy(grid,cols, rows, 3, 25, sz));
+    enemies.add(new Enemy(grid,cols, rows, 20, 10, sz));
+  }
+  
   void update() {
     font = createFont("Courier New", 28);
     pardefaut = createFont("Consolas", 28);
@@ -43,7 +51,7 @@ class Level1 extends Level{
     textSize(32);
     fill(0, 0, 0);
     textFont(pardefaut);
-    text("Pour valider,Tester l'instruction suivant: ", 1200, 50, widthText, heighText); 
+    text("Pour valider, tester l'instruction suivant: ", 1200, 50, widthText, heighText); 
     instruction = "\n\nboolean move = false;\nif (keycode == DOWN) {\n    move = true; \n    println(\"Move = \"+ move );\n}\n";
     consoleResult = "\nAffichage sur la console: \nMove = "+ vrai;
     text(instruction, xText, yText, widthText, heighText);
