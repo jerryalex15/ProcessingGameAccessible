@@ -72,6 +72,7 @@ class Enemy {
   }
   
   // Implémentation de l'algorithme A*
+  /*
   ArrayList<Node> astar(Graph graph, Node start, Node end) {
     ArrayList<Node> openSet = new ArrayList<Node>();
     ArrayList<Node> closedSet = new ArrayList<Node>();
@@ -132,9 +133,11 @@ class Enemy {
     // Aucun chemin trouvé
     return new ArrayList<Node>();
   }
+  */
 
+  /*
   float heuristic(Node a, Node b) {
     // Heuristique : distance euclidienne
     return dist(a.x, a.y, b.x, b.y);
-  }
+  }*/
 }

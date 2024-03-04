@@ -8,6 +8,7 @@ class Level1 extends Level{
   float xText;
   float yText;
   float positionX;
+  PFont font, pardefaut;
   
   Level1(String textMap) {
     super(textMap);
@@ -16,9 +17,12 @@ class Level1 extends Level{
     xText = 1200; 
     yText = 75;
     positionX = xText + 50;
+    
   }
   
   void update() {
+    font = createFont("Courier New", 28);
+    pardefaut = createFont("Consolas", 28);
   }
   
   boolean displayed = false;
@@ -38,12 +42,14 @@ class Level1 extends Level{
     
     textSize(32);
     fill(0, 0, 0);
-    text("Pour valider, Tester l'instruction suivant: ", 1200, 50, widthText, heighText); 
+    textFont(pardefaut);
+    text("Pour valider,Tester l'instruction suivant: ", 1200, 50, widthText, heighText); 
     instruction = "\n\nboolean move = false;\nif (keycode == DOWN) {\n    move = true; \n    println(\"Move = \"+ move );\n}\n";
     consoleResult = "\nAffichage sur la console: \nMove = "+ vrai;
     text(instruction, xText, yText, widthText, heighText);
     if(player.isMoved == true) {
       vrai = "true";
+      textFont(font);
       text(consoleResult, positionX , yText + (75 * 4), widthText, heighText);
       if (positionX > xText) {
         positionX = positionX - 1;

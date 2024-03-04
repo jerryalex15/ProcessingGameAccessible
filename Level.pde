@@ -38,6 +38,7 @@ class Level {
     // Générer quelques ennemis
     for (int i = 1; i < 2; i++) {
       enemies.add(new Enemy(grid,cols, rows, 3, 20, sz));
+      enemies.add(new Enemy(grid,cols, rows, 20, 20, sz));
     }
   }
   
