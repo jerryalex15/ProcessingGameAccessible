@@ -1,3 +1,4 @@
+import processing.sound.*;
 class Enemy {
   int x;
   int y;
@@ -6,7 +7,7 @@ class Enemy {
   int col,row;
   boolean isEndOfTheGame = false;
   int lastMoveFrame;   // Frame du dernier déplacement
-  int moveInterval = 60 * 1;  // Intervalle de déplacement en frames (1 secondes à 60 fps)
+  int moveInterval = 30 * 1;  // Intervalle de déplacement en frames (1 secondes à 30 fps)
 
   Enemy(int[][] gridE, int col, int row, int posX, int posY, float size) {
     this.col = col;
@@ -18,7 +19,7 @@ class Enemy {
     y = posY;
     sz = size;
     
-    // Initialiser le frame du dernier déplacement au début
+    // Initialiser le frame
     lastMoveFrame = frameCount;
   }
   
@@ -26,12 +27,31 @@ class Enemy {
     this.x = a;
     this.y = b;
   }
+  
+  void playSound(Player p, SoundFile alertSound, int radius){
+    float posLeft = p.x - radius;
+    float posRight = p.x + radius;
+    println("=> "+ this.x + " |" + posLeft + "|" + posRight );
+    if (!alertSound.isPlaying()) {
+      alertSound.play();
+      alertSound.pan(map(this.x, posLeft, posRight, -1,1));
+    }
+  }
+  
+  void soundFinished() {
+    alertSound.play();
+  }
+  
+  void stopSound() {
+    alertSound.stop();
+  }
 
   void follow(Player p) {
     
     //il faut utiliser l'algorithme A*
     // Déplacer l'ennemi vers le joueur (avec une vitesse réduite)
     if (frameCount - lastMoveFrame >= moveInterval) {
+      //déplacement x en priorité
       if (p.x > x  && grid[x + 1][y] != '1') {
         x++;
       } else if (p.x < x && grid[x - 1][y] != '1') {
@@ -46,8 +66,8 @@ class Enemy {
       }      
       
       // Mettre à jour le frame du dernier déplacement
-        lastMoveFrame = frameCount;
-      }
+      lastMoveFrame = frameCount;
+    }
       
       // Créer un graphe basé sur la grille
       //Graph graph = new Graph(grid, this.col, this.row);

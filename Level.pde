@@ -2,6 +2,8 @@ class Level {
   int rows;
   int cols;
   int[][] grid;
+  SoundFile alertSound;
+  boolean paused;
   
   int lightRadius;  //ajouter aussi le son en fonction de lightRadius
   float sz = 25;  // Taille du personnage
@@ -12,12 +14,14 @@ class Level {
   
   Player player;
   
-  Level(String textMap) {
+  Level(String textMap, SoundFile alertSound) {
     this.textMap = textMap;
+    this.alertSound = alertSound;
   }
   
   void setup() {
-    size(1920, 1080);
+    paused = false;
+    
     String[] loadedText = loadStrings(textMap);
     this.cols = loadedText[1].length();
     this.rows = loadedText.length;
@@ -35,7 +39,22 @@ class Level {
       }
     }
     
-    player = new Player(sz, lightRadius, grid, cols, rows);
+    player = new Player(sz, lightRadius, grid, cols, rows, alertSound);
+  }
+  
+  void drawMap(float sz){
+    for (int i = 0 ; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        if (grid[j][i] == '1') {
+          stroke(0);
+          fill(132, 46, 27);
+        } else {
+          fill(255);
+          stroke(255);
+        }
+        rect(j * sz, i * sz, sz, sz);
+      }
+    }
   }
   
   void update(){
@@ -44,8 +63,14 @@ class Level {
   void display(){
   }
   
+  void mousePressed() {
+  }  
+  
   void keyPressed() {
     //Déplacement du personnage avec les touches fléchées
     this.player.move(keyCode);
+    if (keyPressed && key == 'p') { // clavier p ou une partie dans l'écran
+      paused = !paused;
+    }
   }
 }
